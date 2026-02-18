@@ -3,5 +3,8 @@ deployment:
     # Path to your live subdomain folder
     - export DEPLOYPATH=/home/martindall/storriesbakery.martindall.com
 
+    # Clean the subdomain folder first (except .htaccess if you want to keep it)
+    - find $DEPLOYPATH -mindepth 1 -not -name '.htaccess' -exec rm -rf {} +
+
     # Copy all files from the repo to the subdomain folder, excluding the .git folder
     - /bin/rsync -av --exclude='.git' ./ $DEPLOYPATH
