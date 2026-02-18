@@ -1,7 +1,7 @@
 deployment:
   tasks:
     # Path to your live subdomain folder
-    - export DEPLOYPATH=/home/martindall/public_html/storriesbakery.martindall.com
+    - export DEPLOYPATH=/home/martindall/storriesbakery.martindall.com
 
     # Copy all files from the repo to the subdomain folder, excluding the .git folder
     - /bin/rsync -av --exclude='.git' ./ $DEPLOYPATH
