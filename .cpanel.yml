@@ -4,4 +4,6 @@ deployment:
     - export DEPLOYPATH=/home/martindall/storriesbakery.martindall.com
 
     # Copy all files from the repo to the subdomain folder, excluding the .git folder
+    - /bin/rsync -av --exclude='.cpanel.yml' ./ $DEPLOYPATH
     - /bin/rsync -av --exclude='.git' ./ $DEPLOYPATH
+    - /bin/rsync -av --exclude='.gitattributes' ./ $DEPLOYPATH
