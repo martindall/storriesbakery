@@ -3,7 +3,9 @@ deployment:
     # Path to your live subdomain folder
     - export DEPLOYPATH=/home/martindall/storriesbakery.martindall.com
 
-    # Copy all files from the repo to the subdomain folder, excluding the .git folder
-    - /bin/rsync -av --exclude='.cpanel.yml' ./ $DEPLOYPATH
-    - /bin/rsync -av --exclude='.git' ./ $DEPLOYPATH
-    - /bin/rsync -av --exclude='.gitattributes' ./ $DEPLOYPATH
+    # Copy all files from the repo to the subdomain folder, excluding Git & cPanel files
+    - /bin/rsync -av --exclude='.git' --exclude='.cpanel.yml' --exclude='.gitattributes' ./ $DEPLOYPATH
+
+    # Fix permissions (folders 755, files 644)
+    - find $DEPLOYPATH -type d -exec chmod 755 {} +
+    - find $DEPLOYPATH -type f -exec chmod 644 {} +
